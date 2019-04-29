@@ -17,7 +17,7 @@ module.exports = {
                 years: req.body.years
             });
             await user.save();
-            res.status(200).send('user created');
+            res.status(200).send('user created: ' + user._id);
         } catch (err) {
             res.status(400).send('error');
         }
@@ -31,7 +31,7 @@ module.exports = {
             const body = _.pick(req.body, ['name', 'years']);
             user.set(body);
             await user.save();
-            res.status(200).send('user updated');
+            res.status(200).send('user updated: ' + user._id);
         } catch (err) {
             res.status(400).send('error');
         }
@@ -43,7 +43,7 @@ module.exports = {
                 res.status(401).send('no hay user con ese id');
             }
             await user.delete();
-            res.status(200).send('user deleted');
+            res.status(200).send('user deleted: ' + user._id);
         } catch (err) {
             res.status(400).send(err);
         }
